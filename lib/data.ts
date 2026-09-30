@@ -1,0 +1,24 @@
+export const categories = ["Featured","Music","Drawing & Painting","Marketing","Animation","Social Media","UI/UX Design","Creative Marketing","Digital Illustration","Film & Video","Crafts","Freelance & Entrepreneurship","Graphic Design","Photography","Productivity","Web Development","Data Science","Cooking"];
+
+export const courses = [
+  { title: "Learn Figma from Basic", tone: "from-sky-200 to-indigo-300" },
+  { title: "Build Digital Asset", tone: "from-zinc-200 to-zinc-400" },
+  { title: "The Power of Big Data", tone: "from-slate-700 to-slate-900" },
+  { title: "Balancing Productivity and Life", tone: "from-stone-300 to-stone-500" },
+  { title: "Mastering Money Management", tone: "from-emerald-100 to-emerald-300" },
+  { title: "From Idea to Startup Success", tone: "from-amber-100 to-orange-300" },
+].map((c) => ({ ...c, lessons: 17, duration: "2 hours 16 mins", comments: 59, rating: 4.5, level: "Beginner", author: "pumpnet studio", price: 25 }));
+
+export const paths = ["Design", "Development", "IT & Software", "Business", "Marketing", "Photography"];
+
+export const testimonials = [
+  { name: "Sarah M.", role: "Enthusiastic Learner", text: "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning." },
+  { name: "James L.", role: "Lifelong Learner", text: "I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development." },
+  { name: "Alex B.", role: "Inspired Creator", text: "As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally." },
+];
+
+export const footerLinks = [
+  ["Featured Courses", "Featured Categories", "Business", "IT", "Design"],
+  ["Development", "Marketing", "Photography", "Finance", "Sport"],
+  ["Become a Creator", "Affiliate Program", "Contact", "Help", "About"],
+];
