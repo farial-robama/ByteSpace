@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { testimonials } from "@/lib/data";
 import { Container } from "../ui";
 
@@ -14,7 +15,13 @@ export function Testimonials() {
         <div className="mt-10 grid items-start gap-5 md:grid-cols-3">
           {testimonials.map((t) => (
             <figure key={t.name} className="rounded-2xl bg-white p-5 shadow-sm">
-              <div className={`h-12 w-12 rounded-full ${t.tint}`} aria-hidden />
+              <Image
+                src={t.image}
+                alt={t.name}
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full object-cover"
+              />
               <figcaption className="mt-3 text-sm font-semibold">{t.name}<div className="text-xs font-normal text-brand">{t.role}</div></figcaption>
               <blockquote className="mt-3 text-xs leading-relaxed text-zinc-600">&ldquo;{t.text}&rdquo;</blockquote>
             </figure>
