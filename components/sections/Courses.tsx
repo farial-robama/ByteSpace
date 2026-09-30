@@ -1,38 +1,219 @@
 import Image from "next/image";
-import { categories, courses } from "@/lib/data";
-import { Container, SectionHeading, Stars } from "../ui";
-import { Avatars } from "../shared";
+import { Star } from "lucide-react";
 
-export function CourseCard({ course }: { course: (typeof courses)[number] }) {
+import { courses } from "@/lib/data";
+import { StudentAvatars } from "@/components/shared/StudentAvatars";
+
+const LIME = "#C6FF00";
+
+const chipRows = [
+  [
+    "Featured",
+    "Music",
+    "Drawing & Painting",
+    "Marketing",
+    "Animation",
+    "Social Media",
+    "UI/UX Design",
+    "Creative Marketing",
+  ],
+  [
+    "Digital Illustration",
+    "Film & Video",
+    "Crafts",
+    "Freelance & Entrepreneurship",
+    "Graphic Design",
+    "Photography",
+  ],
+  ["Productivity", "Web Development", "Data Science", "Cooking"],
+];
+
+function LevelBadge({ level }: { level: string }) {
   return (
-    <article className="rounded-2xl border border-zinc-200 bg-white p-2.5">
-      <div className="relative h-36 overflow-hidden rounded-xl">
-        <Image src={course.image} alt={course.title} fill sizes="(min-width:1024px) 30vw, 90vw" className="object-cover" />
-        <div className="absolute inset-x-2 bottom-2 flex gap-1 text-[9px]">
-          {[`${course.lessons} Lessons`, course.duration, `${course.comments} Comments`].map((t) => <span key={t} className="rounded-full bg-white/60 px-2 py-0.5 backdrop-blur">{t}</span>)}
-        </div>
+    <span className="flex h-[28px] items-center gap-[7px] rounded-full bg-zinc-100 px-[12px] text-[12px] text-zinc-600">
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="#71717a"
+        aria-hidden="true"
+      >
+        <rect x="0" y="7" width="3" height="5" rx="1" />
+        <rect x="4.5" y="4" width="3" height="8" rx="1" />
+        <rect x="9" y="0" width="3" height="12" rx="1" opacity=".35" />
+      </svg>
+
+      {level}
+    </span>
+  );
+}
+
+function CourseMeta({
+  lessons,
+  duration,
+  comments,
+}: {
+  lessons: number;
+  duration: string;
+  comments: number;
+}) {
+  const items = [
+    `${lessons} Lessons`,
+    duration,
+    `${comments} Comments`,
+  ];
+
+  return (
+    <div className="absolute bottom-[16px] left-[14px] flex gap-[14px]">
+      {items.map((item) => (
+        <span
+          key={item}
+          className="h-[26px] whitespace-nowrap rounded-full bg-white/60 px-[11px] text-[12px] leading-[26px] text-zinc-600 backdrop-blur-md"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function CourseCard({
+  course,
+}: {
+  course: (typeof courses)[number];
+}) {
+  return (
+    <article className="h-[384px] rounded-[26px] border border-zinc-200 bg-white p-[15px]">
+      {/* Image */}
+      <div className="relative h-[197px] overflow-hidden rounded-[18px]">
+        <Image
+          src={course.image}
+          alt={course.title}
+          fill
+          sizes="360px"
+          className="object-cover"
+        />
+
+        <CourseMeta
+          lessons={course.lessons}
+          duration={course.duration}
+          comments={course.comments}
+        />
       </div>
-      <div className="px-1 pt-3">
-        <div className="flex items-start justify-between gap-2"><h3 className="text-sm font-semibold">{course.title}</h3><Stars value={course.rating} /></div>
-        <p className="text-[10px] text-zinc-500">by {course.author}</p>
-        <div className="mt-2 flex items-center gap-2 text-[10px]"><span className="rounded-full bg-zinc-100 px-2 py-1">{course.level}</span><Avatars label="26+" /></div>
-        <p className="mt-2 text-sm font-semibold text-brand">${course.price}<span className="text-[10px] font-normal text-zinc-500">/lifetime</span></p>
+
+      {/* Title + Rating */}
+      <div className="mt-[19px] flex h-[28px] items-center justify-between gap-2 px-[2px]">
+        <h3 className="min-w-0 flex-1 truncate text-[20px] font-semibold text-[#0a0a2a]">
+          {course.title}
+        </h3>
+
+        <span className="flex shrink-0 items-center gap-1.5 text-[14px] text-zinc-500">
+          {course.rating}
+
+          <Star
+            className="h-[16px] w-[16px] fill-zinc-300 text-zinc-300"
+            aria-hidden="true"
+          />
+        </span>
       </div>
+
+      {/* Author */}
+      <p className="h-[18px] px-[2px] text-[12px] leading-[18px] text-zinc-500">
+        by{" "}
+        <span className="text-[#0435E6]">
+          {course.author}
+        </span>
+      </p>
+
+      {/* Level + Student Avatars */}
+      <div className="mt-[17px] flex h-[28px] items-center gap-[13px] px-[2px]">
+        <LevelBadge level={course.level} />
+
+        <StudentAvatars
+          label="26+"
+          className="scale-[0.9] origin-left"
+        />
+      </div>
+
+      {/* Price */}
+      <p className="mt-[16px] h-[26px] px-[2px] text-[18px] font-semibold leading-[26px] text-[#0435E6]">
+        ${course.price}
+
+        <span className="text-[12px] font-normal text-zinc-500">
+          /lifetime
+        </span>
+      </p>
     </article>
   );
 }
 
 export function Courses() {
   return (
-    <section id="courses" className="py-16">
-      <Container>
-        <SectionHeading title="Discover Your Passion, Build Your Skills" text="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life." />
-        <div className="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-2 text-[11px]">
-          {categories.map((c, i) => <button key={c} className={`rounded-full px-3 py-1.5 ${i === 0 ? "bg-lime font-medium" : "bg-zinc-100"}`}>{c}</button>)}
-          <span className="px-2 py-1.5 text-brand">+ More</span>
+    <section
+      id="courses"
+      className="relative overflow-hidden bg-white pb-[70px] pt-[42px] font-[family-name:var(--font-body,var(--font-poppins))]"
+    >
+      <div className="relative left-1/2 w-[1200px] -translate-x-1/2">
+        {/* Heading */}
+        <h2 className="text-center text-[40px] font-semibold leading-[54px] text-[#0a0a2a]">
+          Discover Your Passion,
+          <br />
+          Build Your Skills
+        </h2>
+
+        <p className="mx-auto mt-[16px] text-center text-[16px] font-light leading-[29px] text-zinc-400">
+          At Bytespace Courses, we bring you closer to life-changing
+          knowledge. Explore a variety of courses across different
+          <br />
+          fields, from technology to the arts, and make a difference in your
+          career and life.
+        </p>
+
+        {/* Category Chips */}
+        <div className="mt-[43px] flex flex-col items-center gap-[22px]">
+          {chipRows.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="flex items-center gap-[16px]"
+            >
+              {row.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  className={`h-[42px] whitespace-nowrap rounded-full px-[20px] text-[15px] ${
+                    category === "Featured"
+                      ? "font-medium text-[#0a0a2a]"
+                      : "bg-zinc-100 text-zinc-600"
+                  }`}
+                  style={
+                    category === "Featured"
+                      ? { background: LIME }
+                      : undefined
+                  }
+                >
+                  {category}
+                </button>
+              ))}
+
+              {rowIndex === 2 && (
+                <span className="px-1 text-[15px] text-[#0435E6]">
+                  + More
+                </span>
+              )}
+            </div>
+          ))}
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{courses.map((c) => <CourseCard key={c.title} course={c} />)}</div>
-      </Container>
+
+        {/* Course Cards */}
+        <div className="mt-[79px] grid grid-cols-3 gap-x-[40px] gap-y-[40px]">
+          {courses.map((course) => (
+            <CourseCard
+              key={course.title}
+              course={course}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
