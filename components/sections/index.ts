@@ -1,0 +1,9 @@
+export { Navbar } from "./Navbar";
+export { Hero } from "./Hero";
+export { LogoStrip } from "./LogoStrip";
+export { Courses } from "./Courses";
+export { LearningPaths } from "./LearningPaths";
+export { Growth } from "./Growth";
+export { CreatorCta } from "./CreatorCta";
+export { Testimonials } from "./Testimonials";
+export { Footer } from "./Footer";
