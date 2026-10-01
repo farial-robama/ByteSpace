@@ -31,14 +31,13 @@ export function CreatorCta() {
           }}
         />
 
-        {/* shapes: your exported assets */}
+        {/* shapes */}
         <Deco src="lime-squiggle.png"     w={267} h={387} className="left-0 top-[-165px]" />
         <Deco src="white-squiggle-sm.png" w={176} h={176} className="left-[172px] top-[-4px]" />
         <Deco src="white-cone.png"        w={189} h={189} className="-scale-x-100 left-[-40px] top-[215px]" />
         <Deco src="lime-torus.png"        w={346} h={190} className="left-[21px] top-[300px]" />
         <Deco src="lime-squiggle.png"     w={267} h={387} className="left-[1197px] top-[227px] rotate-90 scale-[0.72]" />
 
-        {/* shapes still CSS (no asset provided yet) */}
         <div
           className="absolute left-[1106px] top-[44px] h-[120px] w-[128px] drop-shadow-[0_10px_12px_rgba(0,0,0,0.2)]"
           style={{ background: "linear-gradient(135deg,#d8ff2a 30%,#a8e000)", clipPath: "polygon(8% 0, 100% 72%, 0 100%)" }}

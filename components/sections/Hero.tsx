@@ -8,10 +8,6 @@ const LIME = "#C6FF00";
 
 const S = "/images/shapes";
 
-/* =========================================================
-   REUSABLE DECORATIVE IMAGE
-   ========================================================= */
-
 function Deco({
   src,
   w,
@@ -35,22 +31,13 @@ function Deco({
   );
 }
 
-/* =========================================================
-   HERO
-   ========================================================= */
 
 export function Hero() {
   return (
     <section className="relative h-[1014px] overflow-hidden bg-[#0435E6] font-[family-name:var(--font-poppins)] text-white">
-      {/* =====================================================
-          1440px DESIGN STAGE
-          ===================================================== */}
 
       <div className="absolute left-1/2 top-0 h-full w-[1440px] -translate-x-1/2">
-        {/* ===================================================
-            GRID
-            =================================================== */}
-
+       
         <div
           className="absolute inset-0"
           style={{
@@ -60,19 +47,11 @@ export function Hero() {
           }}
         />
 
-        {/* ===================================================
-            LARGE LIME CIRCLE
-            =================================================== */}
 
         <div
           className="absolute left-1/2 top-[581px] h-[1112px] w-[1112px] -translate-x-1/2 rounded-full"
           style={{ background: LIME }}
         />
-
-        {/* ===================================================
-            DECORATIVE SHAPES
-            Image assets include their own shading
-            =================================================== */}
 
         <Deco
           src="lime-squiggle.png"
@@ -116,15 +95,7 @@ export function Hero() {
           className="left-[1227px] top-[268px]"
         />
 
-        {/* ===================================================
-            NAVBAR
-            =================================================== */}
-
         <Navbar />
-
-        {/* ===================================================
-            HEADING
-            =================================================== */}
 
         <h1 className="absolute inset-x-0 top-[166px] text-center text-[72px] font-semibold leading-[87px]">
           Get Access to Hundreds
@@ -132,18 +103,12 @@ export function Hero() {
           Courses Available
         </h1>
 
-        {/* ===================================================
-            DESCRIPTION
-            =================================================== */}
 
         <p className="absolute inset-x-0 top-[372px] text-center text-[16px] text-white/90">
           Unlock your creativity, gain valuable knowledge, and grow your
           business with our wide range of courses.
         </p>
 
-        {/* ===================================================
-            SEARCH
-            =================================================== */}
 
         <div className="absolute left-1/2 top-[458px] flex -translate-x-1/2 items-center gap-[18px]">
           <label className="flex h-[52px] w-[456px] items-center gap-3 rounded-full bg-white px-6 text-[15px] text-zinc-500">
@@ -163,9 +128,6 @@ export function Hero() {
           </button>
         </div>
 
-        {/* ===================================================
-            STUDENT IMAGE
-            =================================================== */}
 
         <Image
           src="/images/hero.png"
@@ -176,9 +138,6 @@ export function Hero() {
           className="absolute bottom-0 left-1/2 ml-[30px] h-auto w-[470px] -translate-x-1/2"
         />
 
-        {/* ===================================================
-            UI/UX FLOATING CARD
-            =================================================== */}
 
         <FloatCard
           className="
@@ -197,9 +156,6 @@ export function Hero() {
           </div>
         </FloatCard>
 
-        {/* ===================================================
-            LEARNING PROGRESS CARD
-            =================================================== */}
 
         <FloatCard
           className="
@@ -228,9 +184,6 @@ export function Hero() {
           </div>
         </FloatCard>
 
-        {/* ===================================================
-            HAPPY STUDENTS
-            =================================================== */}
 
         <HappyStudents
           className="

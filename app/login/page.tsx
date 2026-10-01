@@ -6,7 +6,13 @@ export const metadata: Metadata = { title: "Sign In | ByteSpace" };
 
 export default function LoginPage() {
   return (
-    <AuthShell heading="Sign in with ease" text="Experience a seamless and efficient sign-in process that grants you instant access to a world of knowledge.">
+    <AuthShell
+      heading="Sign in with ease"
+      lines={[
+        "Experience a seamless and efficient sign-in process that",
+        "grants you instant access to a world of knowledge.",
+      ]}
+    >
       <LoginForm />
     </AuthShell>
   );

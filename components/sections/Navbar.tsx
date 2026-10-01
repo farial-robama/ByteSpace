@@ -1,12 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
 
 export function Navbar() {
   return (
     <header className="absolute inset-x-0 top-0 z-20 flex h-[114px] items-center justify-between px-[120px] text-white">
-      <a href="/" className="flex items-center gap-2">
-        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#C6FF00] text-2xl font-black italic leading-none text-[#0435E6]">b</span>
+      <a href="/" className="flex items-center gap-[10px]">
+        <Image
+          src="/images/logo-mark.png"
+          alt=""
+          aria-hidden
+          width={24}
+          height={30}
+          priority
+        />
         <span className="text-[25px] font-bold tracking-tight">ByteSpace</span>
       </a>
 
