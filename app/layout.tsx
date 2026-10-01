@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "ByteSpace",
-  description: "Sign in or create an account on ByteSpace",
+  description: "Get access to hundreds of courses on ByteSpace.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
