@@ -30,7 +30,7 @@ A responsive landing page and authentication UI for **ByteSpace**, an online lea
 ```bash
 # 1. Clone the repository
 git clone https://github.com/farial-robama/ByteSpace.git
-cd bytespace
+cd ByteSpace
 
 # 2. Install dependencies
 npm install
