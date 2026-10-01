@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ByteSpace
 
-## Getting Started
+A responsive landing page and authentication UI for **ByteSpace**, an online learning platform, built from a Figma design as a frontend assessment for the Jr. Software Engineer (Frontend) role at Doin Tech Limited.
 
-First, run the development server:
+**Live demo:** https://byte-space-pearl.vercel.app/
+**Repository:** https://github.com/farial-robama/ByteSpace
+
+---
+
+## Pages
+
+| Route     | Description                                                                                                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------ |
+| `/`       | Landing page: hero, course catalog, learning paths, growth and creator sections, creator CTA, testimonials, footer |
+| `/login`  | Sign-in page with email/password fields and social login buttons (bonus)                                           |
+| `/signup` | Account creation page (bonus)                                                                                      |
+
+## Tech stack
+
+- [Next.js](https://nextjs.org/) (App Router) with TypeScript
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- [Lucide React](https://lucide.dev/) for icons
+- Poppins via `next/font/google`
+- Deployed on [Vercel](https://vercel.com/)
+
+## Getting started
+
+**Requirements:** Node.js 20 or newer.
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/farial-robama/ByteSpace.git
+cd bytespace
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command         | What it does                     |
+| --------------- | -------------------------------- |
+| `npm run dev`   | Starts the dev server            |
+| `npm run build` | Creates a production build       |
+| `npm run start` | Runs the production build        |
+| `npm run lint`  | Runs ESLint                      |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+bytespace/
+├── app/
+│   ├── layout.tsx            # Root layout, fonts, metadata
+│   ├── page.tsx              # Landing page (composes the sections)
+│   ├── globals.css           # Tailwind import and theme tokens (brand and lime colors)
+│   ├── login/page.tsx
+│   └── signup/page.tsx
+├── components/
+│   ├── sections/             # One file per landing page section
+│   │   ├── index.ts          # Barrel export
+│   │   ├── Navbar.tsx
+│   │   ├── Hero.tsx
+│   │   ├── LogoStrip.tsx
+│   │   ├── Courses.tsx       # Includes CourseCard
+│   │   ├── LearningPaths.tsx
+│   │   ├── Growth.tsx
+│   │   ├── CreatorCta.tsx
+│   │   ├── Testimonials.tsx
+│   │   └── Footer.tsx
+│   ├── auth/                 # Login and signup UI
+│   │   ├── AuthShell.tsx     # Shared two-column layout
+│   │   ├── AuthPreview.tsx   # Course cards and shapes beside the form
+│   │   ├── Field.tsx         # Reusable labeled input
+│   │   ├── LoginForm.tsx
+│   │   └── SignupForm.tsx
+│   ├── shared/
+│   │   └── StudentAvatars.tsx
+│   ├── shared.tsx            # Shapes, FloatCard, Avatars, Feature
+│   └── ui.tsx                # Container, Logo, LimeButton, SearchBar, SectionHeading, ...
+├── lib/
+│   └── data.ts               # Content: courses, categories, testimonials, footer links
+└── public/
+    └── images/
+        ├── shapes/           # Exported 3D shapes from Figma
+        └── ...               # Course photos, hero and student images, logo mark
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design decisions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Section-per-file:** each part of the landing page lives in its own component under `components/sections/`, so sections can be edited, reordered or reused independently.
+- **Content separated from layout:** text and course data live in `lib/data.ts`, so the section components contain only markup and styling.
+- **Reusable UI:** buttons, headings, containers and form fields are shared instead of repeated.
+- **Theme tokens:** the brand blue and lime colors and the font are defined once in `app/globals.css` through Tailwind's `@theme`.
+- **Server Components by default:** only files that need interactivity (`ui.tsx`, `Footer.tsx`, and the auth forms) are marked `"use client"`.
+- **Optimized images:** photos use `next/image`.
+- **Accessibility:** semantic landmarks, labeled form fields, `aria-label` on icon-only buttons, visible focus states, and reduced-motion support for smooth scrolling.
 
-## Deploy on Vercel
+## Notes for reviewers
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- The login and signup forms are UI only. They validate input in the browser (required fields, email format, minimum password length on signup) but do not call a backend.
+- The search bar and newsletter form are likewise front-end only.
+- Social login buttons are visual only.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Git workflow
+
+Work was done on a feature branch and merged through a pull request, not committed directly to `main`.
+
+```bash
+git checkout -b feat/landing-page
+git add .
+git commit -m "feat: add landing page sections"
+git push -u origin feat/landing-page
+# then open a Pull Request into main on GitHub
+```
+
+## Deployment
+
+1. Push the repository to GitHub.
+2. Import it at [vercel.com/new](https://vercel.com/new).
+3. Keep the default Next.js settings and deploy.
+
+Before deploying, run `npm run build` locally to catch errors early.
+
+## License
+
+Created for assessment purposes. The ByteSpace design belongs to its original authors.
